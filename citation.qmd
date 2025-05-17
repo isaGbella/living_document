@@ -1,0 +1,61 @@
+---
+title: "change citation"
+format: typst
+bibliography: basic.yml
+bibliographystyle: mla
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Change citations
+
+Typst has a lot of built in citation formats, which we can use by typing
+"format: typst" in the format specification at the top. Additionally, we
+need our sources in a separate file. BibTex is suitable or the new
+Hayagrida-YAML style. For this example I am using a premade YAML file
+called basic.yml[^1]. This bibliography also needs to be included at the
+top using "bibliography: basic.yml"
+
+[^1]: Downloaded from:
+    <https://github.com/typst/hayagriva/blob/main/docs/file-format.md>
+
+Now we need to choose a citation style. Here are the different possible
+citation styles and which field it is commonly used in:
+
+Engineering, IT "ieee"
+
+Psychology, Life Sciences "apa"
+
+Social sciences "chicago-author-date"
+
+Humanities "mla", "chicago-notes", "harvard-cite-them-right"
+
+Economics "harvard-cite-them-right"
+
+Physics "american-physics-society"
+
+These can be chosen by typing "bibliographystyle: x" at the top, x being
+the chosen citation style. For this example I am using "mla" (Modern
+Language Association).
+
+# Cite 
+
+In order to cite, we only have to use \@ and the key of the source. A
+key is a specific name given to a source, which can be random. To
+demonstrate, in the basic.yml file there is a source with the key
+"gedanken". Hence, I can type in "There were many experiments regarding
+this topic (\@gedanken)"
+
+The output would look like this: There were many experiments regarding
+this topic (@gedanken)[^2]
+
+As you might see at the bottom, the bibliography will automatically be created based on the sources you cite.
+
+[^2]: Sources:
+
+    <https://quarto.org/docs/authoring/citations.html>
+
+    <https://typst.app/docs/reference/model/cite/>
+
+    <https://www.youtube.com/watch?v=w3X76e_tZr8>

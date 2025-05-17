@@ -1,0 +1,69 @@
+---
+title: "Best Practices colourblind-friendly"
+format: html
+---
+
+## Colour-blind friendly colour palettes
+
+First, create a matrix for the pie chart.
+
+```{r}
+x <- c(10,15,15,30,20,10)
+```
+
+If we put out the pie chart without any colour choices, the default colours will look like this:
+
+```{r}
+pie(x, main = "Pie Chart Default Colours")
+```
+
+Okabe & Ito (2008) proposed a colour palette that is accessible to people with different kinds of colour-blindness.[^1]
+
+[^1]: https://easystats.github.io/see/reference/scale_color_okabeito.html
+
+Luckily, there is a code, with which one can access this colour palette. It is named "Okabe-Ito".
+
+```{r}
+palette.colors(palette= "Okabe-Ito")
+```
+
+In the following code, I will manually assign the colours contained in "Okabe-Ito" to my colour palette that I wish to use later for the pie chart.
+
+```{r}
+okabe_ito_colours<- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00",  "#CC79A7","#999999")
+```
+
+Now I can use this palette for the pie chart. (rep(1,6) is used to choose 6 colours, since their are six pies in the chart, and okabe_ito_colours contains 9 colours.)
+
+```{r}
+pie(x, main = "Colour-blind friendly Pie Chart", rep(1, 6), col = okabe_ito_colours)
+```
+
+Now let's create a bar plot. First, create a x and y axis:
+
+```{r}
+x <- c("1", "2", "3", "4", "5")
+y <- c(10, 3, 5, 2, 7)
+barplot(y, names.arg = x, main = "Bar Plot no colours")
+```
+
+Without assigning colours, this type of plot results in a grey output.
+
+Another colour-blind friendly palette is "R4". I will use the same procedure as before to create a colour-palette including R4 colours.
+
+```{r}
+palette.colors(palette= "R4")
+R4_colours <- c("#000000","#DF536B", "#61D04F", "#2297E6", "#28E2E5", "#CD0BBC","#F5C710", "#9E9E9E")
+```
+
+Now, this colour palette will be included in our previously made bar plot.[^2]
+
+[^2]: Sources:
+
+    <https://www.w3schools.com/r/r_graph_bars.asp>
+
+    <https://stackoverflow.com/questions/57153428/r-plot-color-combinations-that-are-colorblind-accessible>
+
+```{r}
+barplot(y, names.arg = x, main = "Colour-blind friendly Bar Plot", rep(1,5), col = R4_colours)
+```

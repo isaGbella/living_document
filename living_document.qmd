@@ -943,6 +943,7 @@ This section outlines essential practices when working with GitHub Desktop in co
 
 Once pushed, your changes will be reflected in the remote GitHub repository. You can now proceed to create a pull request if you're ready to merge your changes into the main document.
 
+
 ---
 
 ### Creating a New Branch
@@ -1197,6 +1198,55 @@ penguin_adelie_stats <- penguins |>                                    # <2>
 ------------------------------------------------------------------------
 
 # Plotting Best Practices
+
+### Themes and Scripts with ggplot
+If you want to add plots in your document and style them consistently without having to always type in the whole code, you can do so by:
+
+  1. Create a new script in your directory: I created a new folder named *script* and then I created a new R script in this folder named *theme*.
+  2. Write your theme/code in the new script, save it as an object, *for example* `plot_theme <- theme_bw() + ...`, and don't forget to save your changes. Also, to make things easier, I already added the `library(tidyverse)` command in the R script instead of adding it later in the qmd file.
+  3. Now, write your code in the qmd file and just add your theme to your ggplot data.
+
+```{r setup, warning=FALSE, message=FALSE}
+# load common/custom theme
+source("scripts/theme.R")
+```
+```{r}
+# save your data as an object
+mtcars2 <- within(mtcars, {
+  vs <- factor(vs, labels = c("V-shaped", "Straight"))
+  am <- factor(am, labels = c("Automatic", "Manual"))
+  cyl  <- factor(cyl)
+  gear <- factor(gear)
+})
+
+# create a plot with your data and save it as an object
+plot_data <- ggplot(mtcars2) +
+  geom_point(aes(x = wt, y = mpg, colour = gear)) +
+  labs(
+    title = "Fuel economy declines as weight increases",
+    subtitle = "(1973-74)",
+    caption = "Data from the 1974 Motor Trend US magazine.",
+    tag = "Figure 1",
+    x = "Weight (1000 lbs)",
+    y = "Fuel economy (mpg)",
+    colour = "Gears"
+  )
+```
+```{r}
+# add your custom/common theme to the plot
+# example 1
+plot_data + plot_theme1
+```
+```{r}
+# example 2
+plot_data + plot_theme2
+```
+```{r}
+# example 3
+plot_data + plot_theme3
+```
+
+You can find the plot example I copied and all theme options on the [official tidyverse website](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
 <!-- TODOs: color schemes, labeling, readability, theme customization -->
 

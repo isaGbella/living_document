@@ -11,6 +11,33 @@ format:
     theme: cosmo
     page-layout: full
     self-contained: true
+
+  odt:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    documentclass: article
+    papersize: a4
+    output-file: living_document
+
+  docx:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    documentclass: article
+    papersize: a4
+    output-file: living_document
+  
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    documentclass: article
+    papersize: a4
+    output-file: living_document
+    
+
+
 editor: source
 ---
 
@@ -649,7 +676,6 @@ Please observe the frustrated cat in @fig-cat.
 
 See the [documentation](https://quarto.org/docs/authoring/figures.html) for further details.
 
-
 ## Tables
 
 <!-- TODOs: markdown tables, knitr::kable(), comparison -->
@@ -763,7 +789,12 @@ kable(
 | Dynamic Content | No | Yes – generated from live R data |
 | Best For | Simple static tables or syntax demos | Data-driven tables, dynamic reports |
 
+
+## Citations and Bibliography
+
 <!-- TODOs: .bib file usage, citation styles, Zotero integration -->
+
+------------------------------------------------------------------------
 
 ## Citations and Bibliography
 
@@ -1189,6 +1220,36 @@ penguin_adelie_stats <- penguins |>                                    # <2>
 ## Further Resounces
 
 -   [UZH AI Guidelines](https://www.uzh.ch/en/explore/basics/ai.html)
+
+
+------------------------------------------------------------------------
+
+# Multiformat Documents
+
+You can generate output of the same document in all formats that are specified under **format** in the authoring section of the Quarto document. Upon rendering, an output file is generated in the first specified format, which is mostly html.
+
+*The Quarto documentation states this:*
+
+*Clicking the Render button (or using the keyboard shortcut ⇧⌘K) in RStudio will render the document to the first format listed in the YAML.*
+
+*This, however, does not work in my installation of RStudio!*
+
+If you want files to be generated for several formats, you must do this on the RStudio command line. First, you need to install the quarto package. Use this command:
+
+install.packages(\'quarto\')
+
+***TBD: *** \ Describe how to install packages in RStudio
+
+Then, after you have saved the Quarto qmd file, issue:
+
+quarto render <quarto file>
+
+For example, in order to generate output for this document, first change your working directory (cd)
+to the directory where the source code of this document is located, then issue:
+
+quarto render living_document.qmd
+
+The nice thing is that the rendered html file contains clickable links to the other formats.
 
 ------------------------------------------------------------------------
 

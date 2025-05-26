@@ -1,2 +1,7 @@
 /.quarto/
 *.html
+*.pdf
+*.odt
+*.docx
+.Rhistory
+.DS_Store
